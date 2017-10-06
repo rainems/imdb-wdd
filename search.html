@@ -2,11 +2,15 @@
 <html>
 	<head>
 	    <title>IMDB</title>
+        
 	    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        
 	    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet" type="text/css">
+        
+        
 	</head>
-	<body>
-    <div id="title">
+	<body id="imdb">
+    <div id="title" >
         <a href="index.html">
         <div id="navbar" href="index.html">
             
@@ -15,7 +19,7 @@
             </a>
        
         <div id="nav_stuff">
-                <input type="text"  maxlength="100" id="search_bar" placeholder="Search Movies"/>
+                 <input type="text" m-model="query" id="search_bar" m-on:keyup.enter="search" placeholder="Search" autofocus/>
         </div>
         
         <div id="outer_list" >
@@ -38,10 +42,22 @@
             </ul>
         </div>
 	</div>
+        
+        
+       
+        
+        
+        
+        
+        
         <br>
+        <div>
         <div id="results_bar">
             <br>
-            <div class="title-block">
+            <div m-if="movies.length == 0" class="title-block">
+            Search for some movies bruh
+            </div>
+            <div class="title-block" m-if="movies.length > 0">
             Titles
             </div>
             
@@ -82,55 +98,29 @@
                 </li>
             </ul>
      
-            <div id="results">
+            <div id="results" m-if="movies.length > 0">
                 
                 <div id="title_results">
-                Results for "Deadpool" (5 Results):
+                Results for "{{query}}" ({{movies.length}} Results):
                 </div>
                 
-                <ul  id="result_list">
+                <ul  id="result_list" m-for="item in movies">
                     <li id="result_box">
-                        <img class="image-box" src="assets/img/batman.png">
+                        
+                        <img class="image-box" src="{{imgbase}}{{item.poster_path}}">
                         <div class="result-description">
-                            <b> Deadpool </b> - 1997 <span class="light-text">A movie about some guy in the desert looking for oil or maybe thats the wrong movie? </span>
+                            <b> {{item.title}} </b> - {{item.date}} <span class="light-text">{{item.overview}}</span>
                         </div>
                         
                     </li>
-                    <li id="result_box">
-                        <img src="assets/img/inception.jpg" class="image-box">
-                        <div class="result-description">
-
-                       
-                            <b> Fake Deadpool </b> - 1998 <span class="light-text">This one is the real fake deadpool that happens in Vancouver or something...</span>
-                        </div>
-                    </li>
-                    <li id="result_box">
-                        <img src="assets/img/p11928964_b_v8_aa.jpg"/ class="image-box">
-                        <div class="result-description">
-                        
-                            <b> Rick and Morty the Movie </b> - 2017 <span class="light-text">This ones a great movie bruh. Two guys go on great adventures... </span>
-                        </div>
-                    </li>
-                    <li id="result_box">
-                        <img src="assets/img/download.jpg"/ class="image-box">
-                        <div class="result-description">
-            
-                            <b> TwinCeption </b> - 2006 <span class="light-text">Have you ever had a conversation with someone but they didnt remember? </span>
-                        </div>
-                    </li>
-                    <li id="result_box">
-                        <img src="assets/img/images.jpg"/ class="image-box">
-                        <div class="result-description">
-                        
-                            <b> Deadpool 2 </b> - 1997 <span class="light-text">All my friends are dead. Web design pushed me to the edge... </span>
-                        </div>
-                    </li>
-
+                    
+                    
                 </ul>
             
             </div>
         
         </div>
+            </div>
 	
 		
 
@@ -139,4 +129,74 @@
 	
 	
 	</body>
+     <!-- Production Build
+        <script src="https://unpkg.com/moonjs"></script>
+         -->
+        <!-- Development Build -->
+        <script src="https://unpkg.com/moonjs/dist/moon.js"></script>
+        <script>
+            
+            
+            
+            
+            const imdb = new Moon({
+              el: "#imdb",
+              data: {
+                query: "",
+                movies: [],
+                imgbase: 'https://image.tmdb.org/t/p/w92'
+              },
+                methods:{
+                    search: function(){
+                        str = 'https://api.themoviedb.org/3/search/movie?api_key=97e65100111402d4f84a192f5afa8b00&query='+this.get('query');
+                        var resp = null;
+                        
+                        function go(){
+                            
+                            var request = new XMLHttpRequest();
+                            request.open('GET', str, false); //Set to true for async
+
+                            
+                            request.onload = function() {
+                              if (this.status >= 200 && this.status < 400) {
+                                console.log("Successfully made request!")
+                                resp = this.response;
+                                  
+                              } else {
+                                console.log("Unknown error in request status code ", this.status)
+                                resp = [{data: 'error'}]
+
+                              }
+                            };
+
+                            request.onerror = function() {
+                              // There was a connection error of some sort
+                                console.log("Error making request due to network")
+                                resp = [{data: 'network error'}]
+                            };
+                            request.send();
+                            
+                        };
+                        go();
+                        
+                        resp = JSON.parse(resp).results;
+                        
+                        for(i = 0; i < resp.length; i++){
+                            resp[i].date = new Date(resp[i].release_date).toLocaleDateString('en-US', {year: 'numeric', month: 'long'})
+                        }
+                        
+                        
+                            this.set('movies', resp);
+                        
+                        
+                        
+                    
+                        
+                    }
+                }
+                
+            });
+        </script>
+        
+        
 </html>
