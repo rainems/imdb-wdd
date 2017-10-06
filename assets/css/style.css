@@ -83,7 +83,7 @@ You DON'T need to worry about the css attributes below.
 body, html {
 	margin: 0;
 	font-family: Lato;
-	background-color: #ededed;
+	background-color: rgb(255,212,84);
 	-webkit-font-smoothing: antialiased;
 }
 .img_scaled_wh {
@@ -114,12 +114,13 @@ ul {
 
 #navbar {
     width:12%;
-	background-color: #fff;
-	color: #505959;
-	font-size: 3em;
+	
+	color: black;
+	font-size: 3.5em;
 	letter-spacing: .025em;
 	font-weight: 400;
-	border: 1px solid rgba(0,0,0,0.2);
+    padding-left: 5%;
+	
    
     display: inline-block;
 }
@@ -135,14 +136,18 @@ ul {
 	position: absolute;
 	left: 50%;
 	margin-left: -150px;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 
 
 
 #title {
-	position:relative;
+	position:fixed;
     width: 100%;
+    z-index: 10;
+    border-bottom: 1px black solid;
+    background-color: rgba(255,212,84,.95);
+   
 }
 
 #subtitle {
@@ -161,7 +166,7 @@ ul {
 #nav_stuff {
     display:inline-block;
     position: absolute;
-    left: 30%;
+    left: 35%;
     padding-top: 9px;
 }
 
@@ -183,56 +188,79 @@ padding-right: 20px;
 
 #main {
     
-    left:5%;
+    
 }
 
 #side_list {
     display: inline-block; 
-    width: 70%;
+    padding-left: 5%;
+    
+    
+    
 }
 
 #results {
     display: inline-block;
     position: absolute;
     margin-left: 2em;
+    margin-bottom: 2em;
     
     
 }
 
 #list_box {
-   border: 1px solid black;
+   
     height:3em;
     width:10em;
-    text-align: center;
+    text-align: left;
+    border-right: 1px black solid;
     
     line-height: 3em;
 }
+#list_box:hover {
+    color: black;
+    cursor: pointer;
+    border: 1px solid black;
+}
+
 
 #results_bar {
     position: relative;
     width:90%;
     left:5%;
-    border-top: 1px solid black;
-    font-size: 3em;
+    
+    padding-top: 5em;
+    
 }
 
 #title_results {
-    font-size: 2.5em;
+    font-size: 1.5em;
     margin-left: 2em;
+    margin-bottom: 1em;
+    margin-top: 0px;
+    padding-top: 0px;
     
 }
 
 #result_box {
-    border: 1px solid black;
+    
     height:5em;
-    width:50em;
-    text-align: center;
+    width:57em;
+    
     line-height: 3em;
-     line-height: 4em;
+    line-height: 4em;
+
+    
+}
+#result_box:hover {
+    color: black;
+    cursor: pointer;
+    border: 1px solid black;
 }
 
 #result_list {
     display: inline-block;
+    
    
     left: 200px;
 }
@@ -241,5 +269,94 @@ padding-right: 20px;
 
 #temp {
     display: inline-block;
-    margin-left:2em;
+   
+}
+
+.nav-hover:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.nav-hover{
+    color: dimgray;
+}
+
+.image-box {
+    float: left; height:4em; padding-top: .5em; width: 4em; height: 4em; padding-left: .5em;
+}
+
+.title-block {
+    position: relative;
+    font-size: 3em;
+    left: 20%;
+}
+
+.result-description {
+    position: relative;
+    left: 2em;
+}
+
+.light-text {
+    color: darkslategrey;
+    margin-left: 2em;
+}
+
+#trailers {
+    margin-top: 5em;
+    position: relative;
+    
+    padding-left: 5%;
+    
+}
+
+.table-head {
+    
+    font-size: 2em;
+}
+
+.preview-images {
+    width: 29vw;
+    height: 20vh;
+    object-fit: cover;
+    margin: .5vw;
+    position: relative;
+    
+    
+    
+}
+
+.play-button {
+    height: 50px;
+	width: 50px;
+	opacity: 0.8;
+	cursor: pointer;
+	filter: invert(100%);
+    position: absolute;
+    z-index: 10;
+    
+    left: 13vw;
+    top: 8vh;
+    
+    
+    
+}
+
+
+
+.td-thing {
+    width: 29vw;
+    height: 20vh;
+    margin: .5vw;
+    position: relative;
+}
+
+.preview-text {
+    color: white;
+    
+    font-size: 1em;
+    position: absolute;
+    z-index: 10;
+    left: 2vw;
+    top: 18vh;
+    
 }

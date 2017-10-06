@@ -6,76 +6,111 @@
 	    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-	<div id="navbar">
-        <div id="navbar_title">
-            <ul>
-                <li>IMDB</li>
+    <div id="title">
+        
+        <a id="navbar">
+            <b>IMDB</b>
+        </a>
+       
+        <a id="nav_stuff" href="search.html">
+                <input  type="text"  maxlength="100" id="search_bar" placeholder="Search Movies"/>
+        </a>
+        
+        <div id="outer_list" >
+            <ul id="nav_list">
+                <li class="nav-hover">
+                Movies TV
+                </li>
+                <li class="nav-hover">
+                Celebs Events
+                </li>
+                <li class="nav-hover">
+                News Community
+                </li>
+                <li class="nav-hover">
+                Watch List
+                </li>
+                <li class="nav-hover">
+                Login
+                </li>
             </ul>
         </div>
-		<div id="navbar_items">
-			<ul>
-				<li>Contact</li>
-				<li>Blog</li>
-				<li>About</li>
-				<li>Home</li>
-                <div class="clear"></div>
-
-			</ul>
-		</div>
 	</div>
-	<div id="container">
-		<div id="title_container">
-			<h1 id="title">Karl the Fog</h1>
-			<h4 id="subtitle">San Francisco's friendly marine layer</h4>
-			<!-- Insert follow button tag here -->
-            <button id="follow_button">Follow</button>
-		</div>
+       
+        <br>
+        <div id="trailers" >
+            
+          <table >
+              <tr>
+                <th class="table-head">Trailer</th>
+                <th class="table-head">New On TV</th> 
+                <th class="table-head">Opening This Week</th>
+              </tr>
+              <tr>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">          
+                    <div class="preview-text">Batman Begins (2006)</div>                   
+                    <img class="preview-images" src="assets/img/batman.png">                 
+                  </td>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">The Dark Knight Rises (2012)</div>
+                    <img class="preview-images" src="assets/img/download-1.jpg"></td> 
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Deadpool (2016)</div>
+                    <img class="preview-images" src="assets/img/download.jpg"></td>
+              </tr>
+              <tr>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Gone With the Wind (1939)</div>
+                    <img class="preview-images" src="assets/img/north-first.png"></td>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Rick and Morty: The Movie (2017)</div>
+                    <img class="preview-images" src="assets/img/p11928964_b_v8_aa.jpg"></td> 
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Deadpool: The TV Show (2018)</div>
+                    <img class="preview-images" src="assets/img/images.jpg"></td>
+              </tr>
+              <tr>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">The Talented Mr. Ripley (1999)</div>
+                    <img class="preview-images" src="assets/img/Talented-Mr-Ripley-Man-Repeller-9.jpg"></td>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Bladerunner (1982)</div>
+                    <img class="preview-images" src="assets/img/tumblr_static_26osk19e9qck84sgcwogsw88w.jpg"></td> 
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">The Breakfast Club (1985)</div>
+                    <img class="preview-images" src="assets/img/MV5BMjM1OTY3MDExM15BMl5BanBnXkFtZTgwODY3MDc3MjI@._V1_CR0,59,640,360_AL_UX477_CR0,0,477,268_AL_.jpg"></td>
+              </tr>
+              <tr>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Spaceballs (1987)</div>
+                    <img class="preview-images" src="assets/img/spaceballs.jpg"></td>
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Star Wars: The Force Awakens (2017)</div>
+                    <img class="preview-images" src="assets/img/Star-Wares-logo-LOW-RES.jpg"></td> 
+                <td class="td-thing">
+                    <img class="play-button" src="assets/img/play.png">
+                    <div class="preview-text">Lord of the Rings (2001)</div>
+                    <img class="preview-images" src="assets/img/Ringstrilogyposter.jpg"></td>
+              </tr>
+        </table>
+        </div>
+	
+		
 
-		<div class="blog_container">
-			<img src="assets/img/ggbridge.jpeg" class="img_scaled_wh">
-			<div class="blog_text_container">
-				<div class="blog_head_container">
-					<h1 class="blog_header">I love SF</h1>
-					<h4 class="blog_subtitle">Especially when it's foggy</h4>
-				</div>
-				<p class="blog_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla tellus et nibh egestas iaculis. Vivamus ut tortor eu sem aliquam volutpat. Maecenas sit amet sodales massa. Morbi sagittis rutrum arcu at sollicitudin. Ut feugiat eget metus quis venenatis. Praesent sed sodales orci. Vivamus aliquet aliquet suscipit. Morbi vel diam purus. Aliquam erat volutpat. Nunc interdum justo quis dignissim sollicitudin. Curabitur at sem nec nunc pretium dapibus. Fusce a felis sodales libero luctus mattis eget et diam.
-				</p>
-			</div>
-		</div>
-		<div class="blog_container">
-			<img src="assets/img/pier7.jpg" class="img_scaled_wh">
-			<div class="blog_text_container">
-				<div class="blog_head_container">
-					<h1 class="blog_header">I love SF</h1>
-					<h4 class="blog_subtitle">Especially when it's foggy</h4>
-				</div>
-				<p class="blog_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla tellus et nibh egestas iaculis. Vivamus ut tortor eu sem aliquam volutpat. Maecenas sit amet sodales massa. Morbi sagittis rutrum arcu at sollicitudin. Ut feugiat eget metus quis venenatis. Praesent sed sodales orci. Vivamus aliquet aliquet suscipit. Morbi vel diam purus. Aliquam erat volutpat. Nunc interdum justo quis dignissim sollicitudin. Curabitur at sem nec nunc pretium dapibus. Fusce a felis sodales libero luctus mattis eget et diam.
-				</p>
-			</div>
-		</div>
-		<div class="blog_container">
-			<img src="assets/img/sutrotower.jpeg" class="img_scaled_wh">
-			<div class="blog_text_container">
-				<div class="blog_head_container">
-					<h1 class="blog_header">I love SF</h1>
-					<h4 class="blog_subtitle">Especially when it's foggy</h4>
-				</div>
-				<p class="blog_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla tellus et nibh egestas iaculis. Vivamus ut tortor eu sem aliquam volutpat. Maecenas sit amet sodales massa. Morbi sagittis rutrum arcu at sollicitudin. Ut feugiat eget metus quis venenatis. Praesent sed sodales orci. Vivamus aliquet aliquet suscipit. Morbi vel diam purus. Aliquam erat volutpat. Nunc interdum justo quis dignissim sollicitudin. Curabitur at sem nec nunc pretium dapibus. Fusce a felis sodales libero luctus mattis eget et diam.
-				</p>
-			</div>
-		</div>
-		<div class="blog_container">
-			<img src="assets/img/ggbridge2.jpeg" class="img_scaled_wh">
-			<div class="blog_text_container">
-				<div class="blog_head_container">
-					<h1 class="blog_header">I love SF</h1>
-					<h4 class="blog_subtitle">Especially when it's foggy</h4>
-				</div>
-				<p class="blog_paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla tellus et nibh egestas iaculis. Vivamus ut tortor eu sem aliquam volutpat. Maecenas sit amet sodales massa. Morbi sagittis rutrum arcu at sollicitudin. Ut feugiat eget metus quis venenatis. Praesent sed sodales orci. Vivamus aliquet aliquet suscipit. Morbi vel diam purus. Aliquam erat volutpat. Nunc interdum justo quis dignissim sollicitudin. Curabitur at sem nec nunc pretium dapibus. Fusce a felis sodales libero luctus mattis eget et diam.
-				</p>
-			</div>
-		</div>
-		<div class="clear"></div>
-	</div>
+		
+		
+	
+	
 	</body>
 </html>

@@ -7,10 +7,12 @@
 	</head>
 	<body>
     <div id="title">
-        
-        <div id="navbar">
-            IMDB
+        <a href="index.html">
+        <div id="navbar" href="index.html">
+            
+            <b>IMDB</b>
         </div>
+            </a>
        
         <div id="nav_stuff">
                 <input type="text"  maxlength="100" id="search_bar" placeholder="Search Movies"/>
@@ -18,33 +20,36 @@
         
         <div id="outer_list" >
             <ul id="nav_list">
-                <li>
+                <li class="nav-hover">
                 Movies TV
                 </li>
-                <li>
+                <li class="nav-hover">
                 Celebs Events
                 </li>
-                <li>
+                <li class="nav-hover">
                 News Community
                 </li>
-                <li>
+                <li class="nav-hover">
                 Watch List
                 </li>
-                <li>
+                <li class="nav-hover">
                 Login
                 </li>
             </ul>
         </div>
 	</div>
         <br>
-        <br>
         <div id="results_bar">
-            Results for "Deadpool" (3 Results):
+            <br>
+            <div class="title-block">
+            Titles
+            </div>
+            
         </div>
         <br>
         <br>
         <div id="main">
-            <div id="temp" >
+            
             <ul  id="side_list">
                 <li id="list_box">
                 All
@@ -76,43 +81,52 @@
                Quotes
                 </li>
             </ul>
-                
-            </div>
-            
+     
             <div id="results">
                 
                 <div id="title_results">
-                Title
+                Results for "Deadpool" (5 Results):
                 </div>
                 
-            <ul  id="result_list">
-                <li id="result_box">
-                    <img src="assets/img/generic-image-placeholder.png"/ style="float: left; height:4em; padding-top: .5em; 
-                                                                                padding-left: .5;">
-               Deadpool
-                <li id="result_box">
-                    <img src="assets/img/generic-image-placeholder.png"/ style="float: left; height:4em; padding-top: .5em; 
-                                                                                padding-left: .5;">
-                    
-                Ultimate Deadpool
-                </li>
-                <li id="result_box">
-                    <img src="assets/img/generic-image-placeholder.png"/ style="float: left; height:4em; padding-top: .5em; 
-                                                                                padding-left: .5;">
-                Rick and Morty the Movie
-                </li>
-                <li id="result_box">
-                    <img src="assets/img/generic-image-placeholder.png"/ style="float: left; height:4em; padding-top: .5em; 
-                                                                                padding-left: .5;">
-                Deadpool TV Series
-                </li>
-                <li id="result_box">
-                    <img src="assets/img/generic-image-placeholder.png"/ style="float: left; height:4em; padding-top: .5em; 
-                                                                                padding-left: .5;">
-               The Dead Pool
-                </li>
-                   
-            </ul>
+                <ul  id="result_list">
+                    <li id="result_box">
+                        <img class="image-box" src="assets/img/batman.png">
+                        <div class="result-description">
+                            <b> Deadpool </b> - 1997 <span class="light-text">A movie about some guy in the desert looking for oil or maybe thats the wrong movie? </span>
+                        </div>
+                        
+                    </li>
+                    <li id="result_box">
+                        <img src="assets/img/inception.jpg" class="image-box">
+                        <div class="result-description">
+
+                       
+                            <b> Fake Deadpool </b> - 1998 <span class="light-text">This one is the real fake deadpool that happens in Vancouver or something...</span>
+                        </div>
+                    </li>
+                    <li id="result_box">
+                        <img src="assets/img/p11928964_b_v8_aa.jpg"/ class="image-box">
+                        <div class="result-description">
+                        
+                            <b> Rick and Morty the Movie </b> - 2017 <span class="light-text">This ones a great movie bruh. Two guys go on great adventures... </span>
+                        </div>
+                    </li>
+                    <li id="result_box">
+                        <img src="assets/img/download.jpg"/ class="image-box">
+                        <div class="result-description">
+            
+                            <b> TwinCeption </b> - 2006 <span class="light-text">Have you ever had a conversation with someone but they didnt remember? </span>
+                        </div>
+                    </li>
+                    <li id="result_box">
+                        <img src="assets/img/images.jpg"/ class="image-box">
+                        <div class="result-description">
+                        
+                            <b> Deadpool 2 </b> - 1997 <span class="light-text">All my friends are dead. Web design pushed me to the edge... </span>
+                        </div>
+                    </li>
+
+                </ul>
             
             </div>
         
