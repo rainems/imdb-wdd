@@ -19,17 +19,21 @@
             </a>
        
         <div id="nav_stuff">
-                 <input type="text" m-model="query" id="search_bar" m-on:keyup.enter="search" placeholder="Search" autofocus/>
+                 <input type="text" m-model="query" id="search_bar" m-on:keyup.enter="search" autofocus/>
         </div>
         
         <div id="outer_list" >
             <ul id="nav_list">
+                <a class="a" href="inTheaters.html">
                 <li class="nav-hover">
                 Movies TV
                 </li>
-                <li class="nav-hover">
-                Celebs Events
-                </li>
+                </a>
+                <a class="a" href="profile.html">
+                    <li class="nav-hover">
+                        Celebrities
+                    </li>
+                </a>
                 <li class="nav-hover">
                 News Community
                 </li>
@@ -42,14 +46,7 @@
             </ul>
         </div>
 	</div>
-        
-        
-       
-        
-        
-        
-        
-        
+
         <br>
         <div>
         <div id="results_bar">
@@ -60,7 +57,7 @@
             <div class="title-block" m-if="movies.length > 0">
             Titles
             </div>
-            
+
         </div>
         <br>
         <br>
@@ -69,6 +66,7 @@
             <ul  id="side_list">
                 <li id="list_box">
                 All
+                </li>
                 <li id="list_box">
                 Title
                 </li>
@@ -101,7 +99,7 @@
             <div id="results" m-if="movies.length > 0">
                 
                 <div id="title_results">
-                Results for "{{query}}" ({{movies.length}} Results):
+                Results for "{{queryCache}}" ({{movies.length}} Results):
                 </div>
                 
                 <ul  id="result_list" m-for="item in movies">
@@ -122,11 +120,6 @@
         </div>
             </div>
 	
-		
-
-		
-		
-	
 	
 	</body>
      <!-- Production Build
@@ -136,62 +129,68 @@
         <script src="https://unpkg.com/moonjs/dist/moon.js"></script>
         <script>
             
-            
-            
-            
-            const imdb = new Moon({
-              el: "#imdb",
-              data: {
-                query: "",
-                movies: [],
-                imgbase: 'https://image.tmdb.org/t/p/w92'
-              },
-                methods:{
-                    search: function(){
-                        str = 'https://api.themoviedb.org/3/search/movie?api_key=97e65100111402d4f84a192f5afa8b00&query='+this.get('query');
+             function httpGet(searchString){
                         var resp = null;
-                        
                         function go(){
                             
                             var request = new XMLHttpRequest();
-                            request.open('GET', str, false); //Set to true for async
-
-                            
+                            request.open('GET', searchString, false); //Set to true for async
                             request.onload = function() {
                               if (this.status >= 200 && this.status < 400) {
                                 console.log("Successfully made request!")
-                                resp = this.response;
-                                  
+                                resp = this.response; 
                               } else {
                                 console.log("Unknown error in request status code ", this.status)
                                 resp = [{data: 'error'}]
 
                               }
                             };
-
                             request.onerror = function() {
                               // There was a connection error of some sort
                                 console.log("Error making request due to network")
                                 resp = [{data: 'network error'}]
                             };
                             request.send();
-                            
                         };
                         go();
                         
                         resp = JSON.parse(resp).results;
+                            return resp;
+                        }
+            
+            
+            
+            
+        
+            const imdb = new Moon({
+              el: "#imdb",
+              data: {
+                query: "",
+                queryCache: "",
+                movies: [],
+                imgbase: 'https://image.tmdb.org/t/p/w92'
+              },
+                methods:{
+                    homesearch: function(){
+                        str = 'https://api.themoviedb.org/3/search/movie?api_key=97e65100111402d4f84a192f5afa8b00&query=2017'
+                        var array = httpGet(str)
+                      array.sort(function(a,b){
+                      return new Date(b.date) - new Date(a.date);});  
+                    return array
+                    
+                    },
+                    search: function(){
+                        str = 'https://api.themoviedb.org/3/search/movie?api_key=97e65100111402d4f84a192f5afa8b00&query='+this.get('query');
+                        
+                        var resp = httpGet(str);
+                        
+                       
                         
                         for(i = 0; i < resp.length; i++){
                             resp[i].date = new Date(resp[i].release_date).toLocaleDateString('en-US', {year: 'numeric', month: 'long'})
                         }
-                        
-                        
-                            this.set('movies', resp);
-                        
-                        
-                        
-                    
-                        
+                        this.set('queryCache', this.get('query'));
+                        this.set('movies', resp);
                     }
                 }
                 

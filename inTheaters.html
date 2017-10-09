@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IMDB</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,500,600,700" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="title">
+
+  <a href="index.html">
+        <div id="navbar" href="index.html">
+            
+            <b>IMDB</b>
+        </div>
+            </a>
+
+    <a id="nav_stuff" href="search.html">
+        <input type="text" maxlength="100" id="search_bar" placeholder="Search Movies"/>
+    </a>
+
+    <div id="outer_list">
+        <ul id="nav_list">
+            <li class="nav-hover" >
+                Movies TV
+            </li>
+            <a class="a" href="profile.html">
+                <li class="nav-hover">
+                    Celebrities
+                </li>
+            </a>
+            <li class="nav-hover">
+                News Community
+            </li>
+            <li class="nav-hover">
+                Watch List
+            </li>
+            <li class="nav-hover">
+                Login
+            </li>
+        </ul>
+    </div>
+</div>
+
+<br>
+<div class="trailers" id="theater">
+    <p   m-if="movie.length == 0"></p>
+
+    <table m-if="movie.length > 0">
+        <tr>
+            <th class="table-head">In Theaters</th>
+            <th class="table-head">Popular This Month</th>
+
+        </tr>
+        <tr></tr>
+        <tr m-for="item in movie">
+            <td class="td-theater">
+                <img class="theater-images" src="{{imgbase}}{{item.theater.poster_path}}">
+                <div class="theater-text">
+                    <div ><b>{{item.theater.title}} </b></div>
+                     <div>{{item.theater.overview}}</div>
+                
+                </div>
+                
+            </td>
+            
+            <td class="td-theater">
+                <img class="theater-images" src="{{imgbase}}{{item.popular.poster_path}}">
+                <div class="theater-text">
+                    <div ><b>{{item.popular.title}}</b></div>
+                    <div>{{item.popular.overview}}</div>
+                
+                </div>
+            </td>
+
+
+        </tr>
+    </table>
+</div>
+
+
+</body>
+<!-- Production Build
+    <script src="https://unpkg.com/moonjs"></script>
+     -->
+<!-- Development Build -->
+<script src="https://unpkg.com/moonjs/dist/moon.js"></script>
+<script>
+
+    function httpGet(searchString) {
+        var resp = null;
+
+        function go() {
+
+            var request = new XMLHttpRequest();
+            request.open('GET', searchString, false); //Set to true for async
+            request.onload = function () {
+                if (this.status >= 200 && this.status < 400) {
+                    console.log("Successfully made request!")
+                    resp = this.response;
+                } else {
+                    console.log("Unknown error in request status code ", this.status)
+                    resp = [{data: 'error'}]
+                    return []
+                }
+            };
+            request.onerror = function () {
+                // There was a connection error of some sort
+                console.log("Error making request due to network")
+                resp = [{data: 'network error'}]
+                return []
+            };
+            request.send();
+        };
+        go();
+
+        resp = JSON.parse(resp).results;
+        return resp;
+    }
+
+    const theater = new Moon({
+        el: "#theater",
+        data: {
+            movie: [],
+            imgbase: 'https://image.tmdb.org/t/p/w500'
+        },
+
+        methods: {
+
+            loadTheaters: function () {
+
+                var populars = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=97e65100111402d4f84a192f5afa8b00';
+                var theaters = 'https://api.themoviedb.org/3/discover/movie?primary_release_date.gte=' + new Date(new Date().getTime() + -10*24*60*60*1000).toISOString().slice(0,10) + '&primary_release_date.lte='+ new Date(new Date().getTime() + 10*24*60*60*1000).toISOString().slice(0,10) +'2017-10-22&api_key=97e65100111402d4f84a192f5afa8b00';
+                console.log(new Date());
+
+                populars = httpGet(populars);
+                theaters = httpGet(theaters);
+                console.log(populars);
+               
+
+                var temp = [];
+                for(var i = 0; i < 6; i ++){
+                    if(i < populars.length -1 && i < theaters.length -1){
+                        temp.push({theater: theaters[i], popular: populars[i]})
+                    }
+                }
+
+                this.set('movie', temp);
+                console.log(this.get('movie'))
+
+              
+                
+
+            }
+        }
+    });
+
+    theater.callMethod('loadTheaters')
+
+</script>
+
+
+</html>
