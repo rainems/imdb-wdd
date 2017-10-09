@@ -207,7 +207,7 @@ padding-right: 20px;
 #side_list {
     display: inline-block; 
     padding-left: 5%;
-    position: fixed;
+    
     top: 100px;
 }
 
